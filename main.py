@@ -4,22 +4,22 @@ from mutagen.easyid3 import EasyID3
 
 from helper import rmDirRec
 
-# parse urls from urls.txt (one url per line)
-# if the url starts with #, it will be ignored
-# urls can have comment appended with ## remove that
-URLS = []
-with open('urls.txt', 'r') as f:
-    for line in f:
-        if line.startswith('#'):
-            continue
-        if '##' in line:
-            line = line[:line.index('##')]
-        URLS.append(line.strip())
+URLS_JSON = []
+with open('urls.json', 'r') as f:
+    import json
+    data = json.load(f)
+    for item in data:
+        URLS_JSON.append({
+            'name': item['name'],
+            'url': item['url'],
+            'ignore': item.get('ignore', False),
+            'overwriteTitle': item.get('overwriteTitle', False),
+        })
 
 
 class TrackNumberPP(yt_dlp.postprocessor.PostProcessor):
     def run(self, info):
-        trackNumber = info['playlist_count'] - info['playlist_index'] + 1
+        trackNumber = info['n_entries'] - info['playlist_index'] + 1
 
         metatag = EasyID3(info['filepath'])
         metatag['tracknumber'] = str(trackNumber)
@@ -28,8 +28,9 @@ class TrackNumberPP(yt_dlp.postprocessor.PostProcessor):
 
 
 config = {
-    'internal_path': 'internal',
-    'data_path': 'data',
+    'internal_path': '.internal',
+    # 'data_path': '/home/spectro/Music',
+    'data_path': '/home/spectro/Music/new',
     'temp_path': 'temp',
 }
 
@@ -44,7 +45,7 @@ if not isExist:
 ydl_opts_default = {
     'format': 'bestaudio/best',
     'keepvideo': False,
-    'playlistend': 2,
+    # 'playlistend': 1,
     'postprocessors': [
         {  # Extract audio using ffmpeg
             'key': 'FFmpegExtractAudio', 'preferredcodec': 'mp3',
@@ -61,23 +62,27 @@ ydl_opts_default = {
 
 with yt_dlp.YoutubeDL(ydl_opts_default) as ydl_playlist:
 
-    for URL in URLS:
-        playlistInfo = ydl_playlist.extract_info(
-            URL, download=False, process=False)
+    for URL in URLS_JSON:
+        if URL['ignore']:
+            continue
 
-        title = playlistInfo['title'].upper()
+        playlistInfo = ydl_playlist.extract_info(
+            URL['url'], download=False, process=False)
+
+        title = URL['name'] if URL['overwriteTitle'] else playlistInfo['title'].lower()
 
         ydl_opts = ydl_opts_default.copy()
         ydl_opts['outtmpl'] = title + \
-            '/%(playlist_count-playlist_index+1)04d %(title)s [%(id)s].%(ext)s'
-        ydl_opts['download_archive'] = 'internal/ARCHIVE_' + title + '.txt'
+            '/%(n_entries-playlist_index+1)04d %(title)s [%(id)s].%(ext)s'
+        ydl_opts['download_archive'] = config['internal_path'] + \
+            '/ARCHIVE_' + title.upper() + '.txt'
         ydl_opts['postprocessor_args'] = {
             'metadata': ['-metadata', 'album=' + title],
         }
 
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             ydl.add_post_processor(TrackNumberPP(), when='post_process')
-            ydl.download(URL)
+            ydl.download(URL['url'])
 
 # Clean up temp folder
 rmDirRec(config['data_path'] + '/' + config['temp_path'])

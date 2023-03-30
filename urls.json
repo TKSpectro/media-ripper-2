@@ -1,0 +1,44 @@
+[
+    {
+        "name": "soundcloud",
+        "url": "https://soundcloud.com/user-665884173/likes",
+        "overwriteTitle": true,
+        "ignore": true
+    },
+    {
+        "name": "hardstyle",
+        "url": "https://youtube.com/playlist?list=PL1uOA_tl83r8CbshTlIWyRIl_C5hoSwVF"
+    },
+    {
+        "name": "techno",
+        "url": "https://youtube.com/playlist?list=PL1uOA_tl83r8bMqSErdNT762z_r7Q8LA7"
+    },
+    {
+        "name": "phonk",
+        "url": "https://youtube.com/playlist?list=PL1uOA_tl83r_Za3DsjpVzK6ZMJiKzPXW8"
+    },
+    {
+        "name": "musik",
+        "url": "https://youtube.com/playlist?list=PL1uOA_tl83r9Ru2xfrzzQLtYXlBVbSPCX"
+    },
+    {
+        "name": "lofi",
+        "url": "https://youtube.com/playlist?list=PL1uOA_tl83r8QuLyPv3clePQ2WjBoD31a"
+    },
+    {
+        "name": "minimaltechno",
+        "url": "https://youtube.com/playlist?list=PL1uOA_tl83r8acbnJ9v3CtjD4IAtWQ4Gh"
+    },
+    {
+        "name": "dnb",
+        "url": "https://youtube.com/playlist?list=PL1uOA_tl83r8l5zroWNZI69yYeE80xlev"
+    },
+    {
+        "name": "sets",
+        "url": "https://youtube.com/playlist?list=PL1uOA_tl83r8vdmv7roMkY2Baf_vV4Hyz"
+    },
+    {
+        "name": "allthecores",
+        "url": "https://youtube.com/playlist?list=PL1uOA_tl83r8Xp9vdoyzuCuUAlAnc89kn"
+    }
+]

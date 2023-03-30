@@ -1,6 +1,6 @@
 __pycache__/
 
 data/
-internal/
+.internal/
 
 urls.txt
