@@ -33,7 +33,7 @@ class TrackNumberPP(yt_dlp.postprocessor.PostProcessor):
 # read in data_path from passed arguments
 parser = argparse.ArgumentParser()
 parser.add_argument("--path", type=str)
-parser.add_argument("--internal_path", type=str, default=".internal")
+parser.add_argument("--internal_path", type=str, default=os.path.join(current_dir, ".internal"))
 parser.add_argument("--temp_path", type=str, default=os.path.join(current_dir, ".temp"))
 parser.add_argument("--quiet", type=bool, default=False)
 args = parser.parse_args()
