@@ -11,7 +11,8 @@
     },
     {
         "name": "techno",
-        "url": "https://youtube.com/playlist?list=PL1uOA_tl83r8bMqSErdNT762z_r7Q8LA7"
+        "url": "https://youtube.com/playlist?list=PL1uOA_tl83r8bMqSErdNT762z_r7Q8LA7",
+        "ignore": true
     },
     {
         "name": "phonk",
@@ -27,11 +28,13 @@
     },
     {
         "name": "minimaltechno",
-        "url": "https://youtube.com/playlist?list=PL1uOA_tl83r8acbnJ9v3CtjD4IAtWQ4Gh"
+        "url": "https://youtube.com/playlist?list=PL1uOA_tl83r8acbnJ9v3CtjD4IAtWQ4Gh",
+        "ignore": true
     },
     {
         "name": "dnb",
-        "url": "https://youtube.com/playlist?list=PL1uOA_tl83r8l5zroWNZI69yYeE80xlev"
+        "url": "https://youtube.com/playlist?list=PL1uOA_tl83r8l5zroWNZI69yYeE80xlev",
+        "ignore": true
     },
     {
         "name": "sets",
@@ -39,6 +42,7 @@
     },
     {
         "name": "allthecores",
-        "url": "https://youtube.com/playlist?list=PL1uOA_tl83r8Xp9vdoyzuCuUAlAnc89kn"
+        "url": "https://youtube.com/playlist?list=PL1uOA_tl83r8Xp9vdoyzuCuUAlAnc89kn",
+        "ignore": true
     }
 ]

@@ -3,8 +3,6 @@ import yt_dlp
 import os
 from mutagen.easyid3 import EasyID3
 
-from helper import rmDirRec
-
 URLS_JSON = []
 with open('urls.json', 'r') as f:
     import json
@@ -32,7 +30,9 @@ class TrackNumberPP(yt_dlp.postprocessor.PostProcessor):
 parser = argparse.ArgumentParser()
 parser.add_argument('--path', type=str)
 parser.add_argument('--internal_path', type=str, default='.internal')
-parser.add_argument('--temp_path', type=str, default='temp')
+parser.add_argument('--temp_path', type=str,
+                    default=os.path.join(os.getcwd(), '.temp'))
+parser.add_argument('--quiet', type=bool, default=False)
 args = parser.parse_args()
 
 if not args.path:
@@ -45,19 +45,21 @@ config = {
     'temp_path': args.temp_path,
 }
 
-isExist = os.path.exists(config['internal_path'])
-if not isExist:
+if not os.path.exists(config['internal_path']):
     os.makedirs(config['internal_path'])
-
-isExist = os.path.exists(config['data_path'])
-if not isExist:
+if not os.path.exists(config['data_path']):
     os.makedirs(config['data_path'])
+if not os.path.exists(config['temp_path']):
+    os.makedirs(config['temp_path'])
 
 ydl_opts_default = {
     # If you want to keep the video file, set this to True
     'keepvideo': False,
-
+    # Only print warnings and errors
+    'quiet': args.quiet,
+    # Download the best quality audio https://github.com/yt-dlp/yt-dlp#format-selection-examples
     'format': 'bestaudio/best',
+    # Don't stop on error (happens when video is private/deleted)
     'ignoreerrors': True,
     'postprocessors': [
         {  # Extract audio using ffmpeg
@@ -81,20 +83,19 @@ with yt_dlp.YoutubeDL(ydl_opts_default) as ydl_playlist:
         playlistInfo = ydl_playlist.extract_info(
             URL['url'], download=False, process=False)
 
-        title = URL['name'] if URL['overwriteTitle'] else playlistInfo['title'].lower()
+        playlistName = URL['name'] if URL['overwriteTitle'] else playlistInfo['title'].lower()
 
         ydl_opts = ydl_opts_default.copy()
-        ydl_opts['outtmpl'] = title + \
+        ydl_opts['outtmpl'] = playlistName + \
             '/%(n_entries-playlist_index+1)04d %(title)s [%(id)s].%(ext)s'
         ydl_opts['download_archive'] = config['internal_path'] + \
-            '/ARCHIVE_' + title.upper() + '.txt'
+            '/ARCHIVE_' + playlistName.upper() + '.txt'
         ydl_opts['postprocessor_args'] = {
-            'metadata': ['-metadata', 'album=' + title],
+            'metadata': ['-metadata', 'album=' + playlistName],
         }
 
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             ydl.add_post_processor(TrackNumberPP(), when='post_process')
             ydl.download(URL['url'])
 
-# Clean up temp folder
-rmDirRec(config['data_path'] + '/' + config['temp_path'])
+exit()

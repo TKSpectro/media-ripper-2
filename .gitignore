@@ -2,5 +2,6 @@ __pycache__/
 
 data/
 .internal/
+.temp/
 
 urls.txt
