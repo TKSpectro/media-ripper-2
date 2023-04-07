@@ -1,3 +1,4 @@
+import argparse
 import yt_dlp
 import os
 from mutagen.easyid3 import EasyID3
@@ -27,11 +28,21 @@ class TrackNumberPP(yt_dlp.postprocessor.PostProcessor):
         return [], info
 
 
+# read in data_path from passed arguments
+parser = argparse.ArgumentParser()
+parser.add_argument('--path', type=str)
+parser.add_argument('--internal_path', type=str, default='.internal')
+parser.add_argument('--temp_path', type=str, default='temp')
+args = parser.parse_args()
+
+if not args.path:
+    print('No path passed! Pass a path with --path')
+    exit()
+
 config = {
-    'internal_path': '.internal',
-    # 'data_path': '/home/spectro/Music',
-    'data_path': '/home/spectro/Music/new',
-    'temp_path': 'temp',
+    'internal_path': args.internal_path,
+    'data_path': args.path,
+    'temp_path': args.temp_path,
 }
 
 isExist = os.path.exists(config['internal_path'])
@@ -43,9 +54,11 @@ if not isExist:
     os.makedirs(config['data_path'])
 
 ydl_opts_default = {
-    'format': 'bestaudio/best',
+    # If you want to keep the video file, set this to True
     'keepvideo': False,
-    # 'playlistend': 1,
+
+    'format': 'bestaudio/best',
+    'ignoreerrors': True,
     'postprocessors': [
         {  # Extract audio using ffmpeg
             'key': 'FFmpegExtractAudio', 'preferredcodec': 'mp3',
@@ -57,7 +70,6 @@ ydl_opts_default = {
         'temp': config['temp_path'],
         'home': config['data_path'],
     },
-    # 'verbose': True,
 }
 
 with yt_dlp.YoutubeDL(ydl_opts_default) as ydl_playlist:
