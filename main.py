@@ -4,7 +4,7 @@ import os
 from mutagen.easyid3 import EasyID3
 
 URLS_JSON = []
-with open("urls.json", "r") as f:
+with open(os.path.join(os.getcwd(), "urls.json"), "r") as f:
     import json
 
     data = json.load(f)
