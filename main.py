@@ -4,7 +4,8 @@ import os
 from mutagen.easyid3 import EasyID3
 
 URLS_JSON = []
-with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), "urls.json"), "r") as f:
+current_dir = os.path.dirname(os.path.realpath(__file__))
+with open(os.path.join(current_dir, "urls.json"), "r") as f:
     import json
 
     data = json.load(f)
@@ -33,7 +34,7 @@ class TrackNumberPP(yt_dlp.postprocessor.PostProcessor):
 parser = argparse.ArgumentParser()
 parser.add_argument("--path", type=str)
 parser.add_argument("--internal_path", type=str, default=".internal")
-parser.add_argument("--temp_path", type=str, default=os.path.join(os.getcwd(), ".temp"))
+parser.add_argument("--temp_path", type=str, default=os.path.join(current_dir, ".temp"))
 parser.add_argument("--quiet", type=bool, default=False)
 args = parser.parse_args()
 
