@@ -2,8 +2,7 @@
     {
         "name": "soundcloud",
         "url": "https://soundcloud.com/user-665884173/likes",
-        "overwriteTitle": true,
-        "ignore": true
+        "overwriteTitle": true
     },
     {
         "name": "hardstyle",
@@ -11,8 +10,7 @@
     },
     {
         "name": "techno",
-        "url": "https://youtube.com/playlist?list=PL1uOA_tl83r8bMqSErdNT762z_r7Q8LA7",
-        "ignore": true
+        "url": "https://youtube.com/playlist?list=PL1uOA_tl83r8bMqSErdNT762z_r7Q8LA7"
     },
     {
         "name": "phonk",
@@ -28,13 +26,11 @@
     },
     {
         "name": "minimaltechno",
-        "url": "https://youtube.com/playlist?list=PL1uOA_tl83r8acbnJ9v3CtjD4IAtWQ4Gh",
-        "ignore": true
+        "url": "https://youtube.com/playlist?list=PL1uOA_tl83r8acbnJ9v3CtjD4IAtWQ4Gh"
     },
     {
         "name": "dnb",
-        "url": "https://youtube.com/playlist?list=PL1uOA_tl83r8l5zroWNZI69yYeE80xlev",
-        "ignore": true
+        "url": "https://youtube.com/playlist?list=PL1uOA_tl83r8l5zroWNZI69yYeE80xlev"
     },
     {
         "name": "sets",
@@ -42,7 +38,16 @@
     },
     {
         "name": "allthecores",
-        "url": "https://youtube.com/playlist?list=PL1uOA_tl83r8Xp9vdoyzuCuUAlAnc89kn",
-        "ignore": true
+        "url": "https://youtube.com/playlist?list=PL1uOA_tl83r8Xp9vdoyzuCuUAlAnc89kn"
+    },
+    {
+        "name": "hn-channel",
+        "url": "https://www.youtube.com/watch?v=c_PhUjmJmDY&list=UULFjwUQarOzPKrNc1LlqeOZrg",
+        "overwriteTitle": true
+    },
+    {
+        "name": "saluuuuuu",
+        "url": "https://www.youtube.com/@saluuuuu.u_u.t/videos",
+        "overwriteTitle": true
     }
 ]
