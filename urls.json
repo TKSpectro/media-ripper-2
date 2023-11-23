@@ -49,5 +49,15 @@
         "name": "saluuuuuu",
         "url": "https://www.youtube.com/@saluuuuu.u_u.t/videos",
         "overwriteTitle": true
+    },
+    {
+        "name": "beastboy",
+        "url": "https://www.youtube.com/playlist?list=PL1uOA_tl83r8qR569e2dLnlPp7j03qsRb",
+        "overwriteTitle": true
+    },
+    {
+        "name": "holo",
+        "url": "https://www.youtube.com/playlist?list=PL1uOA_tl83r_fwIVhwMi_Z9MCsWf7Chjr",
+        "overwriteTitle": true
     }
 ]
