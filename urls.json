@@ -59,5 +59,10 @@
         "name": "holo",
         "url": "https://www.youtube.com/playlist?list=PL1uOA_tl83r_fwIVhwMi_Z9MCsWf7Chjr",
         "overwriteTitle": true
+    },
+    {
+        "name": "rap",
+        "url": "https://youtube.com/playlist?list=PL1uOA_tl83r_MXIGENx-m6qneOpVW30G2&si=IGJ0K6mjCAyPf-hw",
+        "overwriteTitle": true
     }
 ]
