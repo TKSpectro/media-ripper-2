@@ -64,5 +64,10 @@
         "name": "rap",
         "url": "https://youtube.com/playlist?list=PL1uOA_tl83r_MXIGENx-m6qneOpVW30G2&si=IGJ0K6mjCAyPf-hw",
         "overwriteTitle": true
+    },
+    {
+        "name": "jpop",
+        "url": "https://www.youtube.com/playlist?list=PL1uOA_tl83r_7FEpnii7bG3YM1q2o05Fn",
+        "overwriteTitle": true
     }
 ]
